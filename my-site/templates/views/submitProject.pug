@@ -1,0 +1,22 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1 Submit Project
+		
+block content
+	.container
+		if projectSubmitted
+			h3 Thanks for submitting your project.
+		else
+			.row: .col-sm-8.col-md-6
+				form(method='post')
+					input(type='hidden', name='action', value='submitProjects')
+					.form-group(class=validationErrors.topic ? 'has-error' : null)
+						label Topic
+						input(type='text', name='topic', value=formData.topic).form-control
+					.form-group(class=validationErrors.summary ? 'has-error' : null)
+						label Summary
+						textarea(name='summary', placeholder='Summary' rows=4).form-control= formData.summary
+					.form-actions
+						button(type='submit').btn.btn-primary Send
