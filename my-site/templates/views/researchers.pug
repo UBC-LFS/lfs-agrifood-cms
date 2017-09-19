@@ -1,0 +1,26 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1 Browse Researchers
+
+block content
+	.container
+		if dataAvailable
+			table
+				thead
+					tr
+						th Name
+				tbody
+					each researcher in researchers
+						tr
+							td=researcher.name
+		else
+			table
+				thead
+					tr
+						th Name
+				tbody
+					each researcher in researchers.Researchers
+						tr
+							td=researcher.name
