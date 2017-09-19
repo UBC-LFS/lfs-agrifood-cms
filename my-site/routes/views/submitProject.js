@@ -1,6 +1,5 @@
 var keystone = require('keystone');
-// TODO: modify to use Project model
-var Project = keystone.list('Projects');
+var Project = keystone.list('Project');
 
 exports = module.exports = function (req, res) {
 

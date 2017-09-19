@@ -2,18 +2,19 @@ var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
 /**
- * Projects Model
+ * Project Model
  * =============
  */
 
-var Projects = new keystone.List('Projects', {
+var Project = new keystone.List('Project', {
 	nocreate: true,
 	noedit: true,
+	map: { name: 'title' },
 });
 
-// Todo: researchers should be an array of Name types
-Projects.add({
-	researchers: { type: Types.TextArray },
+Project.add({
+	researchers: { type: Types.Relationship, ref: 'Researcher' },
+	title: { type: String, required: true },
 	department: { type: String },
 	institution: { type: String },
 	summary: { type: Types.Markdown, required: true },
@@ -23,6 +24,6 @@ Projects.add({
 	topic: { type: String, required: true },
 });
 
-Projects.defaultSort = '-topic';
-Projects.defaultColumns = 'summary, topic';
-Projects.register();
+Project.defaultSort = '-title';
+Project.defaultColumns = 'title, summary, topic';
+Project.register();
