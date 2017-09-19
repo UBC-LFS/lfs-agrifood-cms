@@ -19,9 +19,9 @@ var _ = require('lodash');
 */
 exports.initLocals = function (req, res, next) {
 	res.locals.navLinks = [
-		{ label: 'Browse by Institution', key: 'institution' },
-		{ label: 'Browse by Researcher', key: 'researcher' },
-		{ label: 'Search', key: 'search' },
+		{ label: 'Browse by Institution', key: 'institution', href: '/institution' },
+		{ label: 'Browse by Researcher', key: 'researcher', href: '/researcher' },
+		{ label: 'Search', key: 'search', href: '/search' },
 		{ label: 'Contact', key: 'contact', href: '/contact' },
 	];
 	res.locals.user = req.user;

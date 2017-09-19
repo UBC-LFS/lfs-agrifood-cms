@@ -55,7 +55,7 @@ html
 							each link in navLinks
 								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
 							if user
-								if user.canAccessKeystone
+								if user.isAnApprovedUser
 									li: a(href='/keystone') Open Keystone
 								li: a(href='/keystone/signout') Sign Out
 							else
@@ -95,7 +95,7 @@ html
 
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone
-		if user && user.canAccessKeystone
+		if user && user.isAnApprovedUser
 			script(src='/keystone/js/content/editor.js')
 
 		//- Add scripts that are globally required by your site here.

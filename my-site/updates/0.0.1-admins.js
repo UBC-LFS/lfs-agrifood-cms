@@ -7,9 +7,10 @@
  * module.exports = function(done) { ... }
  */
 
+ // When creating an Admin by default, they are approved
 exports.create = {
 	User: [
-		{ 'name.first': 'Admin', 'name.last': 'User', 'email': 'user@keystonejs.com', 'password': 'admin', 'isAdmin': true },
+		{ 'name.first': 'Admin', 'name.last': 'User', 'email': 'user@keystonejs.com', 'password': 'admin', 'isAdmin': true, 'isApproved': true },
 	],
 };
 
@@ -30,6 +31,7 @@ function createAdmin (admin, done) {
 	var newAdmin = new User.model(admin);
 
 	newAdmin.isAdmin = true;
+	newAdmin.isApproved = true;
 	newAdmin.save(function (err) {
 		if (err) {
 			console.error('Error adding admin ' + admin.email + ' to the database:');

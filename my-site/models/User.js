@@ -13,16 +13,21 @@ User.add({
 	password: { type: Types.Password, initial: true, required: true },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
+	isApproved: { type: Boolean, label: 'Is an approved user', index: true },
 });
 
 // Provide access to Keystone
 User.schema.virtual('canAccessKeystone').get(function () {
-	return this.isAdmin;
+	return this.isApproved;
+});
+
+User.schema.virtual('isAnApprovedUser').get(function () {
+	return this.isAdmin && this.isApproved;
 });
 
 
 /**
  * Registration
  */
-User.defaultColumns = 'name, email, isAdmin';
+User.defaultColumns = 'name, email, isAdmin, isApproved';
 User.register();
