@@ -21,7 +21,7 @@ User.schema.virtual('canAccessKeystone').get(function () {
 	return this.isApproved;
 });
 
-User.schema.virtual('isAnApprovedUser').get(function () {
+User.schema.virtual('isAdminUser').get(function () {
 	return this.isAdmin && this.isApproved;
 });
 
