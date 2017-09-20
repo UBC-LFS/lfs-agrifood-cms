@@ -1,5 +1,5 @@
 var keystone = require('keystone');
-var Researchers = keystone.list('Researcher');
+var Researcher = keystone.list('Researcher');
 
 exports = module.exports = function (req, res) {
 
@@ -8,13 +8,13 @@ exports = module.exports = function (req, res) {
 
 	// Set locals
 	locals.dataAvailable = false;
-	locals.researchers = {"Researchers" : [{"name":"blah"}, {"name":"blegh"} ]};
-	
-	Researchers.model.find().exec(
+	locals.researchers = {};
+
+	Researcher.model.find().exec(
 		function (err, researchers) {
 			locals.researchers = researchers;
 			locals.dataAvailable = true;
-			view.render('researchers');
+			view.render('browseResearchers');
 		}
 	);
 };

@@ -7,7 +7,7 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	// Set locals
-	locals.section = 'institution';
+	locals.section = 'browseInstitutions';
 	locals.enquiryTypes = Enquiry.fields.enquiryType.ops;
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
@@ -33,5 +33,5 @@ exports = module.exports = function (req, res) {
 		});
 	});
 
-	view.render('institution');
+	view.render('browseInstitutions');
 };
