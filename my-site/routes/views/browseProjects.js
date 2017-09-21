@@ -15,7 +15,7 @@ exports = module.exports = function (req, res) {
 	// Load all projects
 	view.on('init', function (next) {
 
-		Project.model.find().sort('topic').exec(function (err, results) {
+		Project.model.find().sort('title').exec(function (err, results) {
 			if (err || !results.length) {
 				return next(err);
 			}
@@ -41,7 +41,7 @@ exports = module.exports = function (req, res) {
 			page: req.query.page || 1,
 			perPage: 10,
 			maxPages: 10,
-		}).sort('-topic');
+		}).sort('-title');
 
 		if (locals.projects) {
 			q.where('project').in([locals.projects]);

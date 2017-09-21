@@ -41,12 +41,12 @@ keystone.set('locals', {
 // Load your project's Routes
 keystone.set('routes', require('./routes'));
 
-
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
 	enquiries: 'enquiries',
 	users: 'users',
 	projects: 'projects',
+	researchers: 'researchers',
 });
 
 // Start Keystone to connect to your database and initialise the web server

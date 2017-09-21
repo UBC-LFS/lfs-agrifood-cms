@@ -7,8 +7,6 @@ var Types = keystone.Field.Types;
  */
 
 var Project = new keystone.List('Project', {
-	nocreate: true,
-	noedit: true,
 	map: { name: 'title' },
 });
 
@@ -17,11 +15,11 @@ Project.add({
 	title: { type: String, required: true },
 	department: { type: String },
 	institution: { type: String },
-	summary: { type: Types.Markdown, required: true },
+	summary: { type: Types.Markdown },
 	start: { type: Types.Date },
 	end: { type: Types.Date },
 	funding: { type: String },
-	topic: { type: String, required: true },
+	topic: { type: String },
 });
 
 Project.defaultSort = '-title';

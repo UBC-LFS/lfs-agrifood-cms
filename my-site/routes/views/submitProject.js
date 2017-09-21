@@ -10,27 +10,24 @@ exports = module.exports = function (req, res) {
 	locals.section = 'submitProject';
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
-	locals.projectSubmitted = false;
 
-	// On POST requests, add the Project item to the database
 	view.on('post', { action: 'submitProject' }, function (next) {
-
 		var newProject = new Project.model();
+
 		var updater = newProject.getUpdateHandler(req);
 
 		updater.process(req.body, {
 			flashErrors: true,
-			fields: 'summary, topic',
-			errorMessage: 'There was a problem submitting your project:',
+			fields: 'topic, title, summary',
+			errorMessage: 'There was a problem submitting your submit request:',
 		}, function (err) {
 			if (err) {
 				locals.validationErrors = err.errors;
 			} else {
-				locals.projectSubmitted = true;
+				req.flash('success', 'Your project was submitted.');
 			}
 			next();
 		});
 	});
-
 	view.render('submitProject');
 };
