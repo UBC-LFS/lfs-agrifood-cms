@@ -2,16 +2,15 @@ extends ../layouts/default
 
 block intro
 	.container
-		h1 Browse Researchers
+		h1 Browse Projects
 
 block content
 	.container
-		.container
 		table
 			thead
 				tr
-					th Name
+					th Project
 			tbody
-				each researcher in researchers
+				each project in projects
 					tr
-						td=researcher.name
+						td=project.title
