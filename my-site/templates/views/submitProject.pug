@@ -11,7 +11,7 @@ block content
 		else
 			.row: .col-sm-8.col-md-6
 				form(method='post')
-					input(type='hidden', name='action', value='submitProjects')
+					input(type='hidden', name='action', value='submitProject')
 					.form-group(class=validationErrors.topic ? 'has-error' : null)
 						label Topic
 						input(type='text', name='topic', value=formData.topic).form-control
