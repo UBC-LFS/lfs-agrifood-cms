@@ -1,4 +1,5 @@
 include ../mixins/flash-messages
+include ../mixins/auth/auth-forms
 
 doctype html
 html
@@ -58,9 +59,9 @@ html
 								li: a(href='/submitProject') Submit Project
 								if user.isAdminUser
 									li: a(href='/keystone') Open Admin Portal
-								li: a(href='/keystone/signout') Sign Out
+								li: a(href='/signout') Sign Out
 							else
-								li: a(href='/keystone/signin') Sign In
+								li: a(href='/signin') Sign In
 
 		//- BODY
 		#body
@@ -83,16 +84,22 @@ html
 		//- FOOTER
 		.container: #footer
 
+		//- MODALS
+		block modal
+		if !user
+			#modal-auth(tabindex="-1", role="dialog", aria-labelledby="signin", aria-hidden="true").modal.fade
+				.modal-dialog
+					.modal-content
+						+auth-forms({ modal: true, initial: 'signin' })
+
 		//- JAVASCRIPT
 
-		//- jQuery 1.11.3 is included by default, and required by both Bootstrap
-		//- and the KeystoneJS Content Editor. If you are not targeting IE8,
-		//- you can upgrade to 2.1.4 (also bundled) for better performance.
 		script(src='/js/jquery/jquery-1.11.3.min.js')
-
-		//- Customise which Bootstrap javascript files are served by including
-		//- them specifically here, instead of bootstrap-3.3.5.min.js
 		script(src='/js/bootstrap/bootstrap-3.3.5.min.js')
+		script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js')
+		script(src='/js/bootstrap/collapse.js')
+		script(src='/js/bootstrap/dropdown.js')
+		script(src='/js/bootstrap/modal.js')
 
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone
@@ -100,6 +107,7 @@ html
 			script(src='/keystone/js/content/editor.js')
 
 		//- Add scripts that are globally required by your site here.
+		script(src='/js/ui.js')
 
 		//- Include template-specific javascript files by extending the js block
 		block js

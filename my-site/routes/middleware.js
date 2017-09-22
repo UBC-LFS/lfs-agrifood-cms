@@ -8,6 +8,8 @@
  * modules in your project's /lib directory.
  */
 var _ = require('lodash');
+var querystring = require('querystring');
+var keystone = require('keystone');
 
 
 /**
@@ -18,12 +20,61 @@ var _ = require('lodash');
 	or replace it with your own templates / logic.
 */
 exports.initLocals = function (req, res, next) {
-	res.locals.navLinks = [
-		{ label: 'Browse Projects', key: 'browseProjects', href: '/browseProjects' },
-		{ label: 'Browse Researchers', key: 'browseResearchers', href: '/browseResearchers' },
-		{ label: 'Contact', key: 'contact', href: '/contact' },
-	];
-	res.locals.user = req.user;
+
+	var locals = res.locals;
+	locals.navLinks = [{
+		label: 'Browse Projects',
+		key: 'browseProjects',
+		href: '/browseProjects',
+	},
+	{
+		label: 'Browse Researchers',
+		key: 'browseResearchers',
+		href: '/browseResearchers',
+	},
+	{
+		label: 'Contact',
+		key: 'contact',
+		href: '/contact',
+	}];
+
+	locals.user = req.user;
+
+	locals.basedir = keystone.get('basedir');
+
+	locals.page = {
+		title: 'SydJS',
+		path: req.url.split('?')[0], // strip the query - handy for redirecting back to the page
+	};
+
+	locals.qs_set = qs_set(req, res);
+
+	if (req.cookies.target && req.cookies.target === locals.page.path) res.clearCookie('target');
+
+
+	next();
+};
+
+/**
+	Inits the error handler functions into `req`
+*/
+
+exports.initErrorHandlers = function (req, res, next) {
+	res.err = function (err, title, message) {
+		res.status(500).render('errors/500', {
+			err: err,
+			errorTitle: title,
+			errorMsg: message,
+		});
+	};
+
+	res.notfound = function (title, message) {
+		res.status(404).render('errors/404', {
+			errorTitle: title,
+			errorMsg: message,
+		});
+	};
+
 	next();
 };
 
@@ -38,7 +89,9 @@ exports.flashMessages = function (req, res, next) {
 		warning: req.flash('warning'),
 		error: req.flash('error'),
 	};
-	res.locals.messages = _.some(flashMessages, function (msgs) { return msgs.length; }) ? flashMessages : false;
+	res.locals.messages = _.some(flashMessages, function (msgs) {
+		return msgs.length;
+	}) ? flashMessages : false;
 	next();
 };
 
@@ -49,8 +102,28 @@ exports.flashMessages = function (req, res, next) {
 exports.requireUser = function (req, res, next) {
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
-		res.redirect('/keystone/signin');
+		res.redirect('/signin');
 	} else {
 		next();
 	}
+};
+
+/**
+	Returns a closure that can be used within views to change a parameter in the query string
+	while preserving the rest.
+*/
+
+var qs_set = exports.qs_set = function (req, res) {
+	return function qs_set (obj) {
+		var params = _.clone(req.query);
+		for (var i in obj) {
+			if (obj[i] === undefined || obj[i] === null) {
+				delete params[i];
+			} else if (obj.hasOwnProperty(i)) {
+				params[i] = obj[i];
+			}
+		}
+		var qs = querystring.stringify(params);
+		return req.path + (qs ? '?' + qs : '');
+	};
 };
