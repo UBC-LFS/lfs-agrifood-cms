@@ -81,17 +81,9 @@ html
 			block content
 
 
-		//- FOOTER
-		.container: #footer
-
-		//- MODALS
-		block modal
-		if !user
-			#modal-auth(tabindex="-1", role="dialog", aria-labelledby="signin", aria-hidden="true").modal.fade
-				.modal-dialog
-					.modal-content
-						+auth-forms({ modal: true, initial: 'signin' })
-
+			//- FOOTER
+			.container: #footer
+		
 		//- JAVASCRIPT
 
 		script(src='/js/jquery/jquery-1.11.3.min.js')
@@ -107,7 +99,6 @@ html
 			script(src='/keystone/js/content/editor.js')
 
 		//- Add scripts that are globally required by your site here.
-		script(src='/js/ui.js')
 
 		//- Include template-specific javascript files by extending the js block
 		block js

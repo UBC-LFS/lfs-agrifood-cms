@@ -1,12 +1,9 @@
 extends ../../layouts/default
 
-block flash-messages
-	//- intentionally blank
-
 block content
-	.container-xs
+	.container
 		.page-intro
-			h1 Sign into AgriFood Database
+			h1 Sign into UBC Agrifood Database
 			+flash-messages(messages)
 		.page-content
 			+auth-forms({ modal: false, initial: 'signin' })
