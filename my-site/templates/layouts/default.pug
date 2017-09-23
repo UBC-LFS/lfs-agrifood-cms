@@ -15,6 +15,7 @@ html
 
 		//- Customise the stylesheet for your site by editing /public/styles/site.sass
 		link(href="/styles/site.css", rel="stylesheet")
+		link(href="/styles/unit.css", rel="stylesheet")
 
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
@@ -97,8 +98,6 @@ html
 		//- which generate links to edit content for users who can access Keystone
 		if user && user.isAdminUser
 			script(src='/keystone/js/content/editor.js')
-
-		//- Add scripts that are globally required by your site here.
 
 		//- Include template-specific javascript files by extending the js block
 		block js
