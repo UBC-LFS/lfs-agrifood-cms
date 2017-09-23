@@ -4,9 +4,8 @@ block content
 	.container
 		.page-intro
 			h1 Sign into UBC Agrifood Database
-			+flash-messages(messages)
 		.page-content
-			+auth-forms({ modal: false, initial: 'signin' })
+			+auth-forms({ initial: 'signin' })
 
 block js
 	script.
