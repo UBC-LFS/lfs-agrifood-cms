@@ -4,14 +4,27 @@ block intro
 	.container
 		h1 Browse Researchers
 
+
 block content
+	style.
+		table, th, td {
+			border: 1px solid black;
+			padding: 3px;
+		}
 	.container
 		.container
-		table
+		table(style="width:100%", id="researchersTable", class="tablesorter")
 			thead
 				tr
-					th Name
+					th(onclick="sortTable(0)") Name
+					th(onclick="sortTable(1)") Institution
+					th(onclick="sortTable(2)") Department
 			tbody
 				each researcher in researchers
 					tr
 						td=researcher.name
+						td=researcher.institution
+						td=researcher.department
+						
+						
+					

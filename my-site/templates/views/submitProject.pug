@@ -12,12 +12,12 @@ block content
 			.row: .col-sm-8.col-md-6
 				form(method='post')
 					input(type='hidden', name='action', value='submitProject')
-					.form-group(class=validationErrors.topic ? 'has-error' : null)
-						label Topic
-						input(type='text', name='topic', value=formData.topic).form-control
 					.form-group(class=validationErrors.title ? 'has-error' : null)
 						label Title
 						input(type='text', name='title', value=formData.title).form-control
+					.form-group(class=validationErrors.topic ? 'has-error' : null)
+						label Topic
+						input(type='text', name='topic', value=formData.topic).form-control
 					.form-group(class=validationErrors.summary ? 'has-error' : null)
 						label Summary
 						textarea(name='summary', placeholder='Summary' rows=4).form-control= formData.summary

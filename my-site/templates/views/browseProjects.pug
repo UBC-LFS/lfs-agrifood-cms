@@ -5,12 +5,21 @@ block intro
 		h1 Browse Projects
 
 block content
+	style.
+		table, th, td {
+			border: 1px solid black;
+			padding: 3px;
+		}
 	.container
-		table
+		table(style="width:100%")
 			thead
 				tr
-					th Project
+					th Project Title
+					th Institution
+					th Department
 			tbody
 				each project in projects
 					tr
 						td=project.title
+						td=project.institution
+						td=project.department
