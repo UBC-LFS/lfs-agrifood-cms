@@ -78,7 +78,7 @@ exports = module.exports = function (req, res) {
 					console.log('[join] - Set target as [' + req.body.target + '].');
 					res.redirect(req.body.target);
 				} else {
-					res.redirect('/profile');
+					res.redirect('/submitProject');
 				}
 			};
 
