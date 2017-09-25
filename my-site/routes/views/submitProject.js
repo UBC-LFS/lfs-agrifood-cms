@@ -10,6 +10,7 @@ exports = module.exports = function (req, res) {
 	locals.section = 'submitProject';
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
+	locals.projectSubmitted = false;
 
 	view.on('post', { action: 'submitProject' }, function (next) {
 		var newProject = new Project.model();
@@ -24,7 +25,7 @@ exports = module.exports = function (req, res) {
 			if (err) {
 				locals.validationErrors = err.errors;
 			} else {
-				req.flash('success', 'Your project was submitted.');
+				locals.projectSubmitted = true;
 			}
 			next();
 		});

@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var async = require('async');
+var utils = keystone.utils;
 
 exports = module.exports = function (req, res) {
 
@@ -83,7 +84,11 @@ exports = module.exports = function (req, res) {
 			};
 
 			var onFail = function (e) {
-				req.flash('error', 'There was a problem signing you in, please try again.');
+				if (!utils.isEmail(req.body.email)) {
+					req.flash('error', 'Please use a valid email format.');
+				} else {
+					req.flash('error', 'There was a problem signing you in, please try again.');
+				}
 				return next();
 			};
 
