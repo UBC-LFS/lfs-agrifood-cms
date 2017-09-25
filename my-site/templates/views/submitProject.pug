@@ -6,7 +6,9 @@ block intro
 		
 block content
 	.container
-		if projectSubmitted
+		if !user.isApproved
+			h3 Please hold on until we review your registration. We will send you an information once you have been added as a user. 
+		else if user.isApproved && projectSubmitted
 			h3 Thanks for submitting your project.
 		else
 			.row: .col-sm-8.col-md-6

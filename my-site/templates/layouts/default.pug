@@ -58,7 +58,7 @@ html
 								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
 							if user
 								li: a(href='/submitProject') Submit Project
-								if user.isAdminUser
+								if user.canAccessKeystone
 									li: a(href='/keystone') Open Admin Portal
 								li: a(href='/signout') Sign Out
 							else
@@ -96,7 +96,7 @@ html
 
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone
-		if user && user.isAdminUser
+		if user && user.canAccessKeystone
 			script(src='/keystone/js/content/editor.js')
 
 		//- Include template-specific javascript files by extending the js block

@@ -9,7 +9,7 @@ block content
 			| and <a href='http://www.jquery.com/' target='_blank'>jQuery</a>.
 		p Visit the <a href='http://keystonejs.com/guide' target='_blank'>Getting Started</a> guide to learn how to customise it.
 		hr
-		if user && user.isAdminUser
+		if user && user.canAccessKeystone
 			p
 				a(href='/keystone').btn.btn-lg.btn-primary Open the Admin UI
 		else
