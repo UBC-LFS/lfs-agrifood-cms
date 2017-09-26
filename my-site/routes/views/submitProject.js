@@ -19,7 +19,7 @@ exports = module.exports = function (req, res) {
 
 		updater.process(req.body, {
 			flashErrors: true,
-			fields: 'topic, title, summary',
+			fields: 'researchers, title, institution, faculty, department, summary, start, end, funding, topic, awardType',
 			errorMessage: 'There was a problem submitting your submit request:',
 		}, function (err) {
 			if (err) {

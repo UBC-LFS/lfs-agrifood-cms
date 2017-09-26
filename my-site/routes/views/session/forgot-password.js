@@ -4,7 +4,6 @@ var User = keystone.list('User');
 exports = module.exports = function (req, res) {
 
 	var view = new keystone.View(req, res);
-	var locals = res.locals;
 
 	view.on('post', {
 		action: 'forgot-password',
@@ -22,7 +21,6 @@ exports = module.exports = function (req, res) {
 				return next();
 			}
 			user.resetPassword(function (err) {
-				// if (err) return next(err);
 				if (err) {
 					console.error('===== ERROR sending reset password email =====');
 					console.error(err);

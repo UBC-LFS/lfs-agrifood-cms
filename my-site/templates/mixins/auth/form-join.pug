@@ -33,6 +33,9 @@ mixin form-join(args)
 				.form-group(class=!args.modal ? checkFormError('lastname') : null)
 					label(for='lastname').sr-only Last name
 					input(type='text', name='lastname', placeholder='Last name', value=!args.modal ? form.lastname : null).form-control
+				.form-group(class=!args.modal ? checkFormError('institution') : null)
+					label(for='institution').sr-only Institution
+					input(type='text', name='institution', placeholder='Institution', value=!args.modal ? form.institution : null).form-control
 				.form-group(class=!args.modal ? checkFormError('email') : null)
 					label(for='email').sr-only Email
 					input(type='email', name='email', placeholder='Email', value=!args.modal ? form.email : null).form-control

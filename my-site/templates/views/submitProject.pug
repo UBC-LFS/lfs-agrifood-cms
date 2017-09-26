@@ -20,6 +20,24 @@ block content
 					.form-group(class=validationErrors.topic ? 'has-error' : null)
 						label Topic
 						input(type='text', name='topic', value=formData.topic).form-control
+					.form-group(class=validationErrors.researchers ? 'has-error' : null)
+						label Researchers
+						input(type='text', name='researcher', value=formData.researchers).form-control
+					.form-group(class=validationErrors.institution ? 'has-error' : null)
+						label Institution
+						input(type='text', name='institution', value=formData.institution).form-control
+					.form-group(class=validationErrors.faculty ? 'has-error' : null)
+						label Faculty
+						input(type='text', name='faculty', value=formData.faculty).form-control
+					.form-group(class=validationErrors.department ? 'has-error' : null)
+						label Department
+						input(type='text', name='department', value=formData.department).form-control
+					.form-group(class=validationErrors.start ? 'has-error' : null)
+						label Start Date
+						input(type='text', name='start', value=formData.start).form-control
+					.form-group(class=validationErrors.start ? 'has-error' : null)
+						label End Date
+						input(type='text', name='end', value=formData.end).form-control
 					.form-group(class=validationErrors.summary ? 'has-error' : null)
 						label Summary
 						textarea(name='summary', placeholder='Summary' rows=4).form-control= formData.summary

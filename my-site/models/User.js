@@ -11,6 +11,10 @@ User.add({
 	name: { type: Types.Name, required: true, index: true },
 	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
 	password: { type: Types.Password, initial: true, required: true },
+	institution: { type: String, initial: false, required: true, index: true },
+	program: { type: String, index: true },
+	faculty: { type: String, index: true },
+	department: { type: String, index: true },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'has Admin rights', index: true },
 	isApproved: { type: Boolean, label: 'Is an approved user', index: true },
@@ -24,5 +28,5 @@ User.schema.virtual('canAccessKeystone').get(function () {
 /**
  * Registration
  */
-User.defaultColumns = 'name, email, isAdmin, isApproved';
+User.defaultColumns = 'name, email, institution, program, faculty, department, isAdmin, isApproved';
 User.register();
