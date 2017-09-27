@@ -9,46 +9,48 @@ exports = module.exports = function (req, res) {
 
 	// Init locals
 	locals.section = 'browseProjects';
-	locals.dataAvailable = false;
 	locals.projects = [];
 
 	// Load all projects
+	// view.on('init', function (next) {
+
+	// 	Project.model.find().sort('title').exec(function (err, results) {
+	// 		if (err || !results.length) {
+	// 			return next(err);
+	// 		}
+
+	// 		locals.projects = results;
+
+	// 		// Load the counts for each projects
+			// async.each(locals.projects, function (project, next) {
+			// 	Project.model.count().exec(function (count, err) {
+			// 		project.projectCount = count;
+			// 		next(err);
+			// 	});
+			// }, function (err) {
+			// 	next(err);
+			// });
+	// 	});
+	// });
+
 	view.on('init', function (next) {
-
-		Project.model.find().sort('title').exec(function (err, results) {
-			if (err || !results.length) {
-				return next(err);
-			}
-
-			locals.projects = results;
-
-			// Load the counts for each category
-			async.each(locals.projects, function (project, next) {
-
-				keystone.list('Project').model.count().exec(function (err, count) {
-					project.postCount = count;
-					next(err);
-				});
-			}, function (err) {
-				next(err);
-			});
-		});
-	});
-
-	// Load the projects
-	view.on('init', function (next) {
-		var q = Project.paginate({
+		Project.paginate({
 			page: req.query.page || 1,
 			perPage: 10,
 			maxPages: 10,
-		}).sort('-title');
+		})
+		.sort('-title')
+		.exec(function (err, results) {
+			console.log(results);
 
-		if (locals.projects) {
-			q.where('project').in([locals.projects]);
-		}
-
-		q.exec(function (err, results) {
-			locals.project = results;
+			// async.each(results, function (project, next) {
+			// 	Project.model.count().exec(function (count, err) {
+			// 		project.projectCount = count;
+			// 		next(err);
+			// 	});
+			// }, function (err) {
+			// 	next(err);
+			// });
 			next(err);
 		});
 
