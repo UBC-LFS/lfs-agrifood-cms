@@ -20,11 +20,15 @@ exports = module.exports = function (req, res) {
 				return next(err);
 			}
 
+			console.log(results)
+
 			locals.researchers = results;
 
 			// Load the counts for each category
 			async.each(locals.researchers, function (researcher, next) {
 
+
+				console.log(keystone.list('Researcher').model.count())
 				keystone.list('Researcher').model.count().exec(function (err, count) {
 					researcher.postCount = count;
 					next(err);
@@ -36,23 +40,23 @@ exports = module.exports = function (req, res) {
 	});
 
 	// Load the researchers
-	view.on('init', function (next) {
-		var q = Researcher.paginate({
-			page: req.query.page || 1,
-			perPage: 10,
-			maxPages: 10,
-		}).sort('-name');
+	// view.on('init', function (next) {
+	// 	var q = Researcher.paginate({
+	// 		page: req.query.page || 1,
+	// 		perPage: 10,
+	// 		maxPages: 10,
+	// 	}).sort('-name');
 
-		if (locals.researchers) {
-			q.where('researcher').in([locals.researchers]);
-		}
+	// 	if (locals.researchers) {
+	// 		q.where('researcher').in([locals.researchers]);
+	// 	}
 
-		q.exec(function (err, results) {
-			locals.researcher = results;
-			next(err);
-		});
+	// 	q.exec(function (err, results) {
+	// 		locals.researcher = results;
+	// 		next(err);
+	// 	});
 
-	});
+	// });
 
 	// Render the view
 	view.render('browseResearchers');
