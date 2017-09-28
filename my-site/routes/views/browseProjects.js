@@ -9,12 +9,10 @@ exports = module.exports = function (req, res) {
 
 	// Init locals
 	locals.section = 'browseProjects';
-	locals.dataAvailable = false;
 	locals.projects = [];
 
 	// Load all projects
 	view.on('init', function (next) {
-
 		Project.model.find().sort('title').exec(function (err, results) {
 			if (err || !results.length) {
 				return next(err);
@@ -22,11 +20,10 @@ exports = module.exports = function (req, res) {
 
 			locals.projects = results;
 
-			// Load the counts for each category
+			// Load the counts for each projects
 			async.each(locals.projects, function (project, next) {
-
-				keystone.list('Project').model.count().exec(function (err, count) {
-					project.postCount = count;
+				keystone.list('Project').model.count().exec(function (count, err) {
+					project.projectCount = count;
 					next(err);
 				});
 			}, function (err) {
@@ -35,24 +32,30 @@ exports = module.exports = function (req, res) {
 		});
 	});
 
-	// Load the projects
-	view.on('init', function (next) {
-		var q = Project.paginate({
-			page: req.query.page || 1,
-			perPage: 10,
-			maxPages: 10,
-		}).sort('-title');
+	// view.on('init', function (next) {
+	// 	Project.paginate({
+	// 		page: req.query.page || 1,
+	// 		perPage: 10,
+	// 		maxPages: 10,
+	// 	}).sort('-title')
+	// 	.exec(function (err, results) {
+	// 		locals.projects = results;
+	// 		// async.each(results, function (project, next)  {
+	// 		// 	console.log(results);
+	// 		// })
 
-		if (locals.projects) {
-			q.where('project').in([locals.projects]);
-		}
+	// 		// async.each(results, function (project, next) {
+	// 		// 	Project.model.count().exec(function (count, err) {
+	// 		// 		project.projectCount = count;
+	// 		// 		next(err);
+	// 		// 	});
+	// 		// }, function (err) {
+	// 		// 	next(err);
+	// 		// });
+	// 		next(err);
+	// 	});
 
-		q.exec(function (err, results) {
-			locals.project = results;
-			next(err);
-		});
-
-	});
+	// });
 
 	// Render the view
 	view.render('browseProjects');
