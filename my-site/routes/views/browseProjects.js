@@ -18,14 +18,10 @@ exports = module.exports = function (req, res) {
 				return next(err);
 			}
 
-			console.log(results)
-
 			locals.projects = results;
 
 			// Load the counts for each projects
 			async.each(locals.projects, function (project, next) {
-
-				console.log(keystone.list('Project').model.count())
 				keystone.list('Project').model.count().exec(function (count, err) {
 					project.projectCount = count;
 					next(err);

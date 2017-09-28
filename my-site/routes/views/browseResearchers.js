@@ -20,15 +20,10 @@ exports = module.exports = function (req, res) {
 				return next(err);
 			}
 
-			console.log(results)
-
 			locals.researchers = results;
 
 			// Load the counts for each category
 			async.each(locals.researchers, function (researcher, next) {
-
-
-				console.log(keystone.list('Researcher').model.count())
 				keystone.list('Researcher').model.count().exec(function (err, count) {
 					researcher.postCount = count;
 					next(err);
