@@ -12,6 +12,8 @@ block content
 			padding: 3px;
 		}
 	.container
+		if researchers.totalPages > 1
+			.lead.text-muted Showing #{researchers.first} to #{researchers.last} of #{researchers.total} researchers
 		table(style="width:100%")
 			thead
 				tr

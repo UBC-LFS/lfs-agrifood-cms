@@ -11,6 +11,8 @@ block content
 			padding: 3px;
 		}
 	.container
+		if projects.totalPages > 1
+			.lead.text-muted Showing #{projects.first} to #{projects.last} of #{projects.total} projects
 		table(style="width:100%")
 			thead
 				tr
