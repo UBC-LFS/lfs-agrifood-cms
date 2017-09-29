@@ -10,7 +10,7 @@ exports = module.exports = function (req, res) {
 	// Init locals
 	locals.section = 'browseProjects';
 	locals.projects = [];
-	
+
 	// Initially load 10 projects to the page
 	view.on('init', function (next) {
 		Project.paginate({
@@ -18,19 +18,7 @@ exports = module.exports = function (req, res) {
 			perPage: 10,
 		}).sort('title')
 		.exec(function (err, results) {
-			locals.projects = results.results;
-			// async.each(results, function (project, next)  {
-			// 	console.log(results);
-			// })
-
-			// async.each(results, function (project, next) {
-			// 	Project.model.count().exec(function (count, err) {
-			// 		project.projectCount = count;
-			// 		next(err);
-			// 	});
-			// }, function (err) {
-			// 	next(err);
-			// });
+			locals.projects = results;
 			next(err);
 		});
 
