@@ -19,11 +19,24 @@ block content
 					th(onclick="sortTable(1)") Institution
 					th(onclick="sortTable(2)") Department
 			tbody
-				each researcher in researchers
+				each researcher in researchers.results
 					tr
 						td=researcher.name
 						td=researcher.institution
 						td=researcher.department
+		if researchers.totalPages > 1
+			ul.pagination
+				if researchers.previous
+					li: a(href='?page=' + researchers.previous): span.glyphicon.glyphicon-chevron-left
+				else
+					li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+				each p, i in researchers.pages
+					li(class=researchers.currentPage === p ? 'active' : null)
+						a(href='?page=' + (p === '...' ? (i ? researchers.totalPages : 1) : p ))= p
+				if researchers.next
+					li: a(href='?page=' + researchers.next): span.glyphicon.glyphicon-chevron-right
+				else
+					li.disabled: a(href='?page=' + researchers.totalPages): span.glyphicon.glyphicon-chevron-right
 						
 						
 					

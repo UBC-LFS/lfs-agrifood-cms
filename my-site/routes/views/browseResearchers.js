@@ -1,5 +1,4 @@
 var keystone = require('keystone');
-var async = require('async');
 var Researcher = keystone.list('Researcher');
 
 exports = module.exports = function (req, res) {
@@ -9,25 +8,19 @@ exports = module.exports = function (req, res) {
 
 	// Init locals
 	locals.section = 'browseResearchers';
-	locals.dataAvailable = false;
 	locals.researchers = [];
-	
+
 	// Initially load 10 researchers to the page
 	view.on('init', function (next) {
-		var q = Researcher.paginate({
+		Researcher.paginate({
 			page: req.query.page || 1,
 			perPage: 10,
-		}).sort('name');
-
-		// if (locals.researchers) {
-		// 	q.where('researcher').in([locals.researchers]);
-		// }
-
-		q.exec(function (err, results) {
-			locals.researchers = results.results;
+		})
+		.sort('name')
+		.exec(function (err, results) {
+			locals.researchers = results;
 			next(err);
 		});
-
 	});
 
 	// Render the view

@@ -1,5 +1,4 @@
 var keystone = require('keystone');
-var async = require('async');
 var Project = keystone.list('Project');
 
 exports = module.exports = function (req, res) {
@@ -16,12 +15,12 @@ exports = module.exports = function (req, res) {
 		Project.paginate({
 			page: req.query.page || 1,
 			perPage: 10,
-		}).sort('title')
+		})
+		.sort('title')
 		.exec(function (err, results) {
 			locals.projects = results;
 			next(err);
 		});
-
 	});
 
 	// Render the view
