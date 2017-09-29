@@ -1,0 +1,15 @@
+extends ../layouts/default
+
+block content
+	if !project
+		h2 Project does not exist...
+		p.lead Please check the url and try again
+	else
+	.container
+		p: a(href='/browseProjects').text-muted &larr; go back to browse for more projects
+		header
+			h1= project.title
+			p Institution: #{project.institution}
+			p Department: #{project.department}
+			p Summary: #{project.summary}
+			p Funding: #{project.funding}

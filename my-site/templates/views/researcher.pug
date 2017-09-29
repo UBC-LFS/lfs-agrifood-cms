@@ -9,5 +9,5 @@ block content
 		p: a(href='/browseResearchers').text-muted &larr; go back to browse for more researchers
 		header
 			h1= researcher.name
-			p= researcher.institution
-			p= researcher.department
+			p Institution: #{researcher.institution}
+			p Department: #{researcher.department}
