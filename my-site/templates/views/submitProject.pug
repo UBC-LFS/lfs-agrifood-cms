@@ -22,7 +22,7 @@ block content
 						input(type='text', name='topic', value=formData.topic).form-control
 					.form-group(class=validationErrors.researchers ? 'has-error' : null)
 						label Researchers
-						input(type='text', name='researcher', value=formData.researchers).form-control
+						input(type='TextArray', name='researcher', value=formData.researchers).form-control
 					.form-group(class=validationErrors.institution ? 'has-error' : null)
 						label Institution
 						input(type='text', name='institution', value=formData.institution).form-control

@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Researcher = keystone.list('Researcher');
+var Project = keystone.list('Project');
 
 exports = module.exports = function (req, res) {
 
@@ -16,7 +17,13 @@ exports = module.exports = function (req, res) {
 		})
 		.exec(function (err, result) {
 			locals.researcher = result;
-			next();
+			// Find all projects where the current researcher is a collaborator so we can list all of his/her projects
+			// by title, and link to their pages using their ObjectIds.
+			Project.model.find({ researchers: result.id })
+				.exec(function (err, projectResult) {
+					locals.projects = projectResult;
+					next();
+				});
 		});
 	});
 

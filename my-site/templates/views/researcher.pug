@@ -5,9 +5,22 @@ block content
 		h2 Researcher does not exist...
 		p.lead Please check the url and try again
 	else
+	style.
+		td {
+			padding: 3px;
+		}
 	.container
 		p: a(href='/browseResearchers').text-muted &larr; go back to browse for more researchers
 		header
 			h1= researcher.name
 			p Institution: #{researcher.institution}
 			p Department: #{researcher.department}
+		table(style="width:100%")
+			thead
+				tr
+					th Projects:
+			tbody
+				each project in projects
+					tr
+						td
+							a(href='/browseProjects/project/' + project._id) #{project.title}

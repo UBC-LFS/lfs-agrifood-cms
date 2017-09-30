@@ -11,7 +11,7 @@ var Project = new keystone.List('Project', {
 });
 
 Project.add({
-	researchers: { type: Types.Relationship, ref: 'Researcher', required: true, initial: true },
+	researchers: { type: Types.Relationship, ref: 'Researcher', many: true, required: true, initial: true },
 	title: { type: String, required: true },
 	institution: { type: String },
 	faculty: { type: String },

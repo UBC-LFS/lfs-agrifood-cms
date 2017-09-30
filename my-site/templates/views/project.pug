@@ -5,6 +5,10 @@ block content
 		h2 Project does not exist...
 		p.lead Please check the url and try again
 	else
+	style.
+		td {
+			padding: 3px;
+		}
 	.container
 		p: a(href='/browseProjects').text-muted &larr; go back to browse for more projects
 		header
@@ -13,3 +17,12 @@ block content
 			p Department: #{project.department}
 			p Summary: #{project.summary}
 			p Funding: #{project.funding}
+		table(style="width:100%")
+			thead
+				tr
+					th Researchers:
+			tbody
+				each researcher in researchersList
+					tr
+						td
+							a(href='/browseResearchers/researcher/' + researcher._id) #{researcher.name}
