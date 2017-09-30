@@ -22,8 +22,8 @@ exports = module.exports = function (req, res) {
 
 			function (cb) {
 
-				if (!req.body.firstname || !req.body.lastname || !req.body.institution || !req.body.email || !req.body.password) {
-					req.flash('error', 'Please enter a name, institution, email and password.');
+				if (!req.body.firstname || !req.body.lastname || !req.body.institution || !req.body.department || !req.body.email || !req.body.password) {
+					req.flash('error', 'Please enter a name, institution, department, email, and password.');
 					return cb(true);
 				}
 
