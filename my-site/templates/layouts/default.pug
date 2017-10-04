@@ -14,8 +14,22 @@ html
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 
 		//- Customise the stylesheet for your site by editing /public/styles/site.sass
+		link(href='//cdn.ubc.ca/clf/7.0.4/css/ubc-clf-full.min.css', rel='stylesheet')
+		link(href='css/unit.css', rel='stylesheet')
 		link(href="/styles/site.css", rel="stylesheet")
-		link(href="/styles/unit.css", rel="stylesheet")
+		
+		//if lte IE 7
+		link(href='//cdn.ubc.ca/clf/7.0.4/css/font-awesome-ie7.css', rel='stylesheet')
+		// Le HTML5 shim, for IE6-8 support of HTML5 elements
+		//if lt IE 9
+		script(src='//cdn.ubc.ca/clf/html5shiv.min.js')
+		// Fav and touch icons
+		link(rel='shortcut icon', href='//cdn.ubc.ca/clf/7.0.4/img/favicon.ico')
+		link(rel='apple-touch-icon-precomposed', sizes='144x144', href='//cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-144-precomposed.png')
+		link(rel='apple-touch-icon-precomposed', sizes='114x114', href='//cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-114-precomposed.png')
+		link(rel='apple-touch-icon-precomposed', sizes='72x72', href='//cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-72-precomposed.png')
+		link(rel='apple-touch-icon-precomposed', href='//cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-57-precomposed.png')
+
 
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
@@ -38,11 +52,26 @@ html
 	body
 
 		//- HEADER
-		#header: .container
 
-			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
-			//- ... or completely change this header to suit your design.
 
+		header#ubc7-header.row-fluid.expand(role='banner'): .container
+			.span1
+				#ubc7-logo
+					a(href='http://www.ubc.ca') The University of British Columbia
+			.span2
+				#ubc7-apom
+					a(href='//cdn.ubc.ca/clf/ref/aplaceofmind') UBC - A Place of Mind
+			#ubc7-wordmark-block.span9
+				#ubc7-wordmark
+					a(href='http://www.ubc.ca') The University of British Columbia
+					span#ubc7-vancouver-campus.ubc7-campus Vancouver campus
+			#ubc7-global-utility
+				button(type='button', data-toggle='collapse', data-target='#ubc7-global-menu')
+					span UBC Search
+				noscript
+					a#ubc7-global-utility-no-script(href='http://www.ubc.ca/') UBC Search
+
+		.container
 			div(role="navigation").navbar.navbar-default
 				.container-fluid
 					.navbar-header
@@ -88,6 +117,7 @@ html
 		//- JAVASCRIPT
 
 		script(src='/js/jquery/jquery-1.11.3.min.js')
+		script(src="http://cdn.ubc.ca/clf/7.0.4/js/ubc-clf.min.js")
 		script(src='/js/bootstrap/bootstrap-3.3.5.min.js')
 		script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js')
 		script(src='/js/bootstrap/collapse.js')
