@@ -95,9 +95,9 @@ html(lang='en')
 									if user.canAccessKeystone
 										li: a(href='/keystone') Open Admin Portal
 										li: a(href='/signout') Sign Out
-									else
-										li 
-											a(href='/signin') Sign In
+								else
+									li 
+										a(href='/signin') Sign In
 			ul.breadcrumb.expand
 				li
 					a(href='#') Faculty Name
@@ -216,8 +216,6 @@ html(lang='en')
 		//- Customise the stylesheet for your site by editing /public/styles/site.sass
 		link(href='https://cdn.ubc.ca/clf/7.0.4/css/ubc-clf-full.min.css', rel='stylesheet')
 		link(href='/styles/unit.css', rel='stylesheet')
-		// commenting out site.css for now
-		//- link(href="/styles/site.css", rel="stylesheet")
 
 		//- Add any other template-specific HEAD tags by extending the head block
 		block head
