@@ -2,7 +2,212 @@ include ../mixins/flash-messages
 include ../mixins/auth/auth-forms
 
 doctype html
-html
+//if IEMobile 7
+	html.iem7.oldie(lang='en')
+//if (IE 7)&!(IEMobile)
+	html.ie7.oldie(lang='en')
+//if (IE 8)&!(IEMobile)
+	html.ie8.oldie(lang='en')
+//if (IE 9)&!(IEMobile)
+	html.ie9(lang='en')
+//if (gt IE 9)|(gt IEMobile 7)
+	| [
+html(lang='en')
+	// <![endif]
+	//
+		* UBC CLF (Common Look and Feel) v7.0.4
+		* Copyright 2012-2013 The University of British Columbia
+		* UBC Communications and Marketing
+		* http://brand.ubc.ca/clf
+		*/
+	head
+		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+		meta(charset='utf-8')
+		title The University of British Columbia
+		meta(name='viewport', content='width=device-width')
+		meta(name='description', content='')
+		meta(name='author', content='')
+		//if lte IE 7
+			link(href='//cdn.ubc.ca/clf/7.0.4/css/font-awesome-ie7.css', rel='stylesheet')
+		// Le HTML5 shim, for IE6-8 support of HTML5 elements
+		//if lt IE 9
+			script(src='//cdn.ubc.ca/clf/html5shiv.min.js')
+	body
+		.container
+			// UBC Global Utility Menu
+			#ubc7-global-menu.collapse.expand
+				#ubc7-search.expand
+					#ubc7-search-box
+						form.form-search(method='get', action='http://www.ubc.ca/search/refine/', role='search')
+							input.input-xlarge.search-query(type='text', name='q', placeholder='Search this website')
+							input(type='hidden', name='label', value='Search UBC')
+							input(type='hidden', name='site', value='*.ubc.ca')
+							button.btn(type='submit') Search
+				#ubc7-global-header.expand
+					// Global Utility Header from CDN
+			// End of UBC Global Utility Menu
+			// UBC Header
+			header#ubc7-header.row-fluid.expand(role='banner')
+				.span1
+					#ubc7-logo
+						a(href='http://www.ubc.ca') The University of British Columbia
+				.span2
+					#ubc7-apom
+						a(href='http://cdn.ubc.ca/clf/ref/aplaceofmind') UBC - A Place of Mind
+				#ubc7-wordmark-block.span9
+					#ubc7-wordmark
+						a(href='http://www.ubc.ca') The University of British Columbia
+						span#ubc7-vancouver-campus.ubc7-campus Vancouver campus
+					#ubc7-global-utility
+						button(type='button', data-toggle='collapse', data-target='#ubc7-global-menu')
+							span UBC Search
+						noscript
+							a#ubc7-global-utility-no-script(href='http://www.ubc.ca/') UBC Search
+			// End of UBC Header
+			// UBC Unit Identifier
+			#ubc7-unit.row-fluid.expand
+				.span12
+					// Mobile Menu Icon
+					.navbar
+						a.btn.btn-navbar(data-toggle='collapse', data-target='#ubc7-unit-navigation')
+							span.icon-bar
+							span.icon-bar
+							span.icon-bar
+					// Read more about Unit Name Treatment on http://brand.ubc.ca/clf
+					// No Faculty Treatment
+					// <div id="ubc7-unit-name" class="ubc7-single-element">
+					#ubc7-unit-name
+						a(href='/')
+							span#ubc7-unit-faculty Faculty of Land and Food Systems
+							span#ubc7-unit-identifier Unit Name
+			// End of UBC Unit Identifier
+			// UBC Unit Navigation
+			#ubc7-unit-menu.navbar.expand(role='navigation')
+				.navbar-inner.expand
+					.container
+						#ubc7-unit-navigation.nav-collapse.collapse
+							ul.nav
+								li: a(href='/') Home
+								each link in navLinks
+									li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
+								if user
+									li: a(href='/submitProject') Submit Project
+									if user.canAccessKeystone
+										li: a(href='/keystone') Open Admin Portal
+										li: a(href='/signout') Sign Out
+									else
+										li 
+											a(href='/signin') Sign In
+			ul.breadcrumb.expand
+				li
+					a(href='#') Faculty Name
+					span.divider /
+				li
+					a(href='#') Unit Name
+					span.divider /
+				li.active Page Name
+			// End of UBC Unit Breadcrumbs
+			// Content Area
+			#root.content.expand(role='main')
+			// End of Content Area
+			// Footer Area Unit Menu - Mobile Only
+			#ubc7-unit-alternate-navigation.navbar.expand.visible-phone(role='navigation')
+				.navbar-inner.expand
+					.container
+						.nav-collapse.collapse
+							ul.nav
+								li.active
+									a(href='#') Home
+								li
+									a(href='#') First Link
+								li
+									a(href='#') Second Link
+								li
+									a(href='#') Third Link
+								li.dropdown
+									.btn-group
+										a.btn(href='http://www.ubc.ca/') Dropdown
+										button.btn.dropdown-toggle(data-toggle='dropdown')
+											span.ubc7-arrow.blue.down-arrow
+										ul.dropdown-menu
+											li
+												a(href='#') Action
+											li
+												a(href='#') Another action
+											li
+												a(href='#') Something else
+											li.nav-header Navigation header
+											li
+												a(href='#') Separated link
+											li
+												a(href='#') One more separated link
+						// /.nav-collapse
+				// /navbar-inner
+			// /navbar
+
+			//- NOTE:
+			//- There is no .container wrapping class around body blocks to allow more flexibility in design.
+			//- Remember to include it in your templates when you override the intro and content blocks!
+
+			//- The Intro block appears above flash messages (used for temporary information display)
+			block intro
+
+			//- Flash messages allow you to display once-off status messages to users, e.g. form
+			//- validation errors, success messages, etc.
+			+flash-messages(messages)
+
+			//- The content block should contain the body of your template's content
+			block content
+			// End of Footer Area Unit Menu
+			footer#ubc7-footer.expand(role='contentinfo')
+				#ubc7-unit-footer.row-fluid.expand
+					#ubc7-unit-address.span10
+						#ubc7-address-unit-name Unit Name
+						#ubc7-address-campus Vancouver Campus | Okanagan Campus
+						#ubc7-address-street 1234 Street Name
+						#ubc7-address-location
+							span#ubc7-address-city Vancouver | Kelowna
+							| , 
+							span#ubc7-address-province BC
+							span#ubc7-address-country Canada
+							span#ubc7-address-postal V0V 0V0
+						#ubc7-address-phone Tel XXX XXX XXXX
+						#ubc7-address-email E-mail email@ubc.ca
+					.span2
+						strong Find us on
+						#ubc7-unit-social-icons
+							a(href='http://www.ubc.ca/')
+								i.icon-facebook-sign
+							a(href='http://www.ubc.ca/')
+								i.icon-twitter-sign
+				.row-fluid.expand.ubc7-back-to-top
+					.span2
+						a(href='#')
+							| Back to top 
+							.ubc7-arrow.up-arrow.grey
+				#ubc7-global-footer.row-fluid.expand
+					#ubc7-signature.span5
+						a(href='http://www.ubc.ca/') The University of British Columbia
+					#ubc7-footer-menu.span7
+				#ubc7-minimal-footer.row-fluid.expand
+					.span12
+						ul
+							li
+								a(href='https://cdn.ubc.ca/clf/ref/emergency') Emergency Procedures
+								span.divider |
+							li
+								a(href='https://cdn.ubc.ca/clf/ref/terms') Terms of Use
+								span.divider |
+							li
+								a(href='https://cdn.ubc.ca/clf/ref/copyright') Copyright
+								span.divider |
+							li
+								a(href='https://cdn.ubc.ca/clf/ref/accessibility') Accessibility
+		// /container
+		// Placed javascript at the end for faster loading
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js')
+		script(src='https://cdn.ubc.ca/clf/7.0.4/js/ubc-clf.min.js')
+
 
 	//- HTML HEADER
 	head
@@ -13,22 +218,18 @@ html
 		title= title || 'UBC AgriFood Database Project'
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 
-		//- Customise the stylesheet for your site by editing /public/styles/site.sass
-		link(href='//cdn.ubc.ca/clf/7.0.4/css/ubc-clf-full.min.css', rel='stylesheet')
-		link(href='css/unit.css', rel='stylesheet')
-		link(href="/styles/site.css", rel="stylesheet")
 		
 		//if lte IE 7
-		link(href='//cdn.ubc.ca/clf/7.0.4/css/font-awesome-ie7.css', rel='stylesheet')
+		link(href='https://cdn.ubc.ca/clf/7.0.4/css/font-awesome-ie7.css', rel='stylesheet')
 		// Le HTML5 shim, for IE6-8 support of HTML5 elements
 		//if lt IE 9
-		script(src='//cdn.ubc.ca/clf/html5shiv.min.js')
+		script(src='https://cdn.ubc.ca/clf/html5shiv.min.js')
 		// Fav and touch icons
-		link(rel='shortcut icon', href='//cdn.ubc.ca/clf/7.0.4/img/favicon.ico')
-		link(rel='apple-touch-icon-precomposed', sizes='144x144', href='//cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-144-precomposed.png')
-		link(rel='apple-touch-icon-precomposed', sizes='114x114', href='//cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-114-precomposed.png')
-		link(rel='apple-touch-icon-precomposed', sizes='72x72', href='//cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-72-precomposed.png')
-		link(rel='apple-touch-icon-precomposed', href='//cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-57-precomposed.png')
+		link(rel='shortcut icon', href='https://cdn.ubc.ca/clf/7.0.4/img/favicon.ico')
+		link(rel='apple-touch-icon-precomposed', sizes='144x144', href='https://cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-144-precomposed.png')
+		link(rel='apple-touch-icon-precomposed', sizes='114x114', href='https://cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-114-precomposed.png')
+		link(rel='apple-touch-icon-precomposed', sizes='72x72', href='https://cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-72-precomposed.png')
+		link(rel='apple-touch-icon-precomposed', href='https://cdn.ubc.ca/clf/7.0.4/img/apple-touch-icon-57-precomposed.png')
 
 
 		//- This file provides the default styling for the KeystoneJS Content Editor
@@ -44,88 +245,25 @@ html
 
 		//- Include template-specific stylesheets by extending the css block
 		block css
+		
+		//- Customise the stylesheet for your site by editing /public/styles/site.sass
+		link(href='https://cdn.ubc.ca/clf/7.0.4/css/ubc-clf-full.min.css', rel='stylesheet')
+		link(href='/styles/unit.css', rel='stylesheet')
+		// commenting out site.css for now
+		//- link(href="/styles/site.css", rel="stylesheet")
 
 		//- Add any other template-specific HEAD tags by extending the head block
 		block head
 
 	//- HTML BODY
 	body
-
-		//- HEADER
-
-
-		header#ubc7-header.row-fluid.expand(role='banner'): .container
-			.span1
-				#ubc7-logo
-					a(href='http://www.ubc.ca') The University of British Columbia
-			.span2
-				#ubc7-apom
-					a(href='//cdn.ubc.ca/clf/ref/aplaceofmind') UBC - A Place of Mind
-			#ubc7-wordmark-block.span9
-				#ubc7-wordmark
-					a(href='http://www.ubc.ca') The University of British Columbia
-					span#ubc7-vancouver-campus.ubc7-campus Vancouver campus
-			#ubc7-global-utility
-				button(type='button', data-toggle='collapse', data-target='#ubc7-global-menu')
-					span UBC Search
-				noscript
-					a#ubc7-global-utility-no-script(href='http://www.ubc.ca/') UBC Search
-
-		.container
-			div(role="navigation").navbar.navbar-default
-				.container-fluid
-					.navbar-header
-						button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-							span.sr-only Toggle navigation
-							span.icon-bar
-							span.icon-bar
-							span.icon-bar
-						a.navbar-brand(href='/') Home
-					.collapse.navbar-collapse
-						ul.nav.navbar-nav.navbar-left
-							each link in navLinks
-								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-							if user
-								li: a(href='/submitProject') Submit Project
-								if user.canAccessKeystone
-									li: a(href='/keystone') Open Admin Portal
-								li: a(href='/signout') Sign Out
-							else
-								li: a(href='/signin') Sign In
-
-		//- BODY
-		#body
-
-			//- NOTE:
-			//- There is no .container wrapping class around body blocks to allow more flexibility in design.
-			//- Remember to include it in your templates when you override the intro and content blocks!
-
-			//- The Intro block appears above flash messages (used for temporary information display)
-			block intro
-
-			//- Flash messages allow you to display once-off status messages to users, e.g. form
-			//- validation errors, success messages, etc.
-			+flash-messages(messages)
-
-			//- The content block should contain the body of your template's content
-			block content
-
-
-			//- FOOTER
-			.container: #footer
-		
 		//- JAVASCRIPT
 
 		script(src='/js/jquery/jquery-1.11.3.min.js')
-		script(src="http://cdn.ubc.ca/clf/7.0.4/js/ubc-clf.min.js")
 		script(src='/js/bootstrap/bootstrap-3.3.5.min.js')
+		script(src="http://cdn.ubc.ca/clf/7.0.4/js/ubc-clf.min.js")
 		script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js')
-		script(src='/js/bootstrap/collapse.js')
-		script(src='/js/bootstrap/dropdown.js')
-		script(src='/js/bootstrap/modal.js')
 
-		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
-		//- which generate links to edit content for users who can access Keystone
 		if user && user.canAccessKeystone
 			script(src='/keystone/js/content/editor.js')
 
