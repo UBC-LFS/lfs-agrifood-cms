@@ -32,7 +32,7 @@ html(lang='en')
 		// Le HTML5 shim, for IE6-8 support of HTML5 elements
 		//if lt IE 9
 			script(src='//cdn.ubc.ca/clf/html5shiv.min.js')
-	body
+	block body
 		.container
 			// UBC Global Utility Menu
 			#ubc7-global-menu.collapse.expand
@@ -79,7 +79,7 @@ html(lang='en')
 					#ubc7-unit-name
 						a(href='/')
 							span#ubc7-unit-faculty Faculty of Land and Food Systems
-							span#ubc7-unit-identifier Unit Name
+							span#ubc7-unit-identifier Agrifood Database
 			// End of UBC Unit Identifier
 			// UBC Unit Navigation
 			#ubc7-unit-menu.navbar.expand(role='navigation')
@@ -100,12 +100,16 @@ html(lang='en')
 										a(href='/signin') Sign In
 			ul.breadcrumb.expand
 				li
-					a(href='#') Faculty Name
+					a Faculty of Land and Food Systems
 					span.divider /
 				li
-					a(href='#') Unit Name
+					a(href='/') Agrifood Database
 					span.divider /
-				li.active Page Name
+				- navLinks.forEach(function(link){
+					- var isActive = (link.key == section ? 'active' : 'inactive')
+					li(class=isActive)
+						a(href=link.href)= link.label
+				- })
 			// End of UBC Unit Breadcrumbs
 			// Content Area
 			#root.content.expand(role='main')

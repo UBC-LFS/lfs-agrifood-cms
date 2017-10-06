@@ -1193,3 +1193,7 @@
 .glyphicon-menu-up:before {
 	content: "\e260";
 }
+
+.breadcrumb>li.inactive {
+	display: none;
+}
