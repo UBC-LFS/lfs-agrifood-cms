@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Unit editable CSS */
 
 
@@ -1202,4 +1203,8 @@
 	padding: 15px 15px;
 	margin: -15px;
 	background: white;
+}
+
+.row {
+	margin: 0;
 }
