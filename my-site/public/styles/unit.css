@@ -1197,3 +1197,7 @@
 .breadcrumb>li.inactive {
 	display: none;
 }
+
+.row {
+	margin: 0;
+}
