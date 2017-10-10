@@ -1197,3 +1197,9 @@
 .breadcrumb>li.inactive {
 	display: none;
 }
+
+.containerWrapper {
+	padding: 15px 15px;
+	margin: -15px;
+	background: white;
+}

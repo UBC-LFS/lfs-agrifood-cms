@@ -1,7 +1,7 @@
 extends ../layouts/default
 
 block intro
-	.container
+	.containerWrapper: .container
 		h1 Browse Researchers
 
 block content
@@ -10,7 +10,7 @@ block content
 			border: 1px solid black;
 			padding: 3px;
 		}
-	.container
+	.containerWrapper: .container
 		if researchers.totalPages > 1
 			.lead.text-muted Showing #{researchers.first} to #{researchers.last} of #{researchers.total} researchers
 		table(style="width:100%")
