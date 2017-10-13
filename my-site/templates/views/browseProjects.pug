@@ -1,7 +1,7 @@
 extends ../layouts/default
 
 block intro
-	.containerWrapper: .container
+	.container
 		h1 Browse Projects
 
 block content
@@ -10,7 +10,7 @@ block content
 			border: 1px solid black;
 			padding: 3px;
 		}
-	.containerWrapper: .container
+	.container
 		if projects.totalPages > 1
 			.lead.text-muted Showing #{projects.first} to #{projects.last} of #{projects.total} projects
 		table(style="width:100%")

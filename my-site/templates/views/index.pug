@@ -1,8 +1,9 @@
 extends ../layouts/default
 
 block content
-	.containerWrapper: .container: .jumbotron
-		h2 UBC AgriFood Database Project
+	.container: .jumbotron
+		h1 UBC AgriFood Database Project
+		p This is your new <a href='http://keystonejs.com' target='_blank'>KeystoneJS</a> website.
 		p It includes the latest versions of
 			| <a href='http://getbootstrap.com/' target='_blank'>Bootstrap</a>
 			| and <a href='http://www.jquery.com/' target='_blank'>jQuery</a>.
@@ -14,7 +15,7 @@ block content
 		else
 			p We have created a default Admin user for you with the email <strong>user@keystonejs.com</strong> and the password <strong>admin</strong>.
 			p
-				a(href='/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
+				a(href='/keystone/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
 				|  to use the Admin UI.
 		hr
 		p Remember to <a href='https://github.com/keystonejs/keystone' target='_blank'>Star KeystoneJS on GitHub</a> and

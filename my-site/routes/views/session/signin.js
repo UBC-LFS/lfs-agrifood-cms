@@ -3,7 +3,7 @@ var async = require('async');
 
 exports = module.exports = function (req, res) {
 	if (req.user) {
-		return res.redirect(req.cookies.target || '/');
+		return res.redirect(req.cookies.target || '/submitProject');
 	}
 
 	var view = new keystone.View(req, res);
@@ -25,7 +25,7 @@ exports = module.exports = function (req, res) {
 				console.log('[signin] - Set target as [' + req.body.target + '].');
 				res.redirect(req.body.target);
 			} else {
-				res.redirect('/');
+				res.redirect('/submitProject');
 			}
 		};
 

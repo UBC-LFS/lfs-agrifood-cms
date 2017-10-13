@@ -10,18 +10,19 @@ block content
 			padding: 3px;
 		}
 	.container
+		p: a(href='/browseProjects').text-muted &larr; go back to browse for more projects
 		header
 			h1= project.title
 			p Institution: #{project.institution}
 			p Department: #{project.department}
 			p Summary: #{project.summary}
 			p Funding: #{project.funding}
-			table
-				thead
+		table(style="width:100%")
+			thead
+				tr
+					th Researchers:
+			tbody
+				each researcher in researchersList
 					tr
-						th Researchers:
-				tbody
-					each researcher in researchersList
-						tr
-							td
-								a(href='/browseResearchers/researcher/' + researcher._id) #{researcher.name}
+						td
+							a(href='/browseResearchers/researcher/' + researcher._id) #{researcher.name}
