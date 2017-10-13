@@ -11,7 +11,6 @@ var keystone = require('keystone');
 
 keystone.init({
 	'name': 'BC AgriFood Database Project',
-	'brand': 'University of British Columbia',
 
 	'sass': 'public',
 	'static': 'public',

@@ -11,7 +11,7 @@ User.add({
 	name: { type: Types.Name, required: true, index: true },
 	email: { type: Types.Email, initial: true, required: true, unique: true, index: true },
 	password: { type: Types.Password, initial: true, required: true },
-	institution: { type: String, initial: false, required: true, index: true },
+	institution: { type: String, initial: false, index: true },
 	program: { type: String, index: true },
 	faculty: { type: String, index: true },
 	department: { type: String, index: true },
