@@ -15,6 +15,7 @@ html
 
 		//- Customise the stylesheet for your site by editing /public/styles/site.sass
 		link(href="/styles/site.css", rel="stylesheet")
+		link(href='/js/__jquery.tablesorter/themes/blue/style.css', rel='stylesheet')
 
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
@@ -89,9 +90,12 @@ html
 		script(src='/js/jquery/jquery-1.11.3.min.js')
 		script(src='/js/bootstrap/bootstrap-3.3.5.min.js')
 		script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js')
+		script(src='/js/__jquery.tablesorter/jquery.tablesorter.js')
 		script(src='/js/bootstrap/collapse.js')
 		script(src='/js/bootstrap/dropdown.js')
 		script(src='/js/bootstrap/modal.js')
+		script(src='/js/__jquery.tablesorter/tablesorter.js')
+
 
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone
