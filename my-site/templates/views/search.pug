@@ -1,0 +1,43 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1 Search Projects
+
+block content
+	style.
+		table, th, td {
+			border: 1px solid black;
+			padding: 3px;
+		}
+		table {
+			margin-top: 10px;
+		}
+	.container
+		body
+			.container
+				.row
+					.col-sm-6.col-sm-offset-3
+						form(method='post')
+							.input-group.stylish-input-group
+								input.form-control(name= 'searchText', type="text", placeholder="Search", value=formData.searchText)
+								span.input-group-addon
+									button(type="submit", name='action', value='search')
+										span.glyphicon.glyphicon-search
+		if projects.length > 0
+			.container
+			table(style="width:100%")
+				thead
+					tr
+						th Project Title
+						th Institution
+						th Department
+				tbody
+					each project in projects
+						tr
+							td=project.title
+							td=project.institution
+							td=project.department
+		else
+			h3 No search results.
+		
