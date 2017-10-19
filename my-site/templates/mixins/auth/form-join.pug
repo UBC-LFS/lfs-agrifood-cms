@@ -8,7 +8,7 @@
 	
 mixin form-join(args)
 	div(class=args.modal ? 'modal-body' : null)
-		p.auth-form-divider: span.auth-form-divider-text or
+		p.auth-form-divider: span.auth-form-divider-text
 			//- p Or use your email, that's okay too:
 		form(method='post', action='/join', autocomplete='off', novalidate).auth-form
 			input(type='hidden', name='action', value='join')
@@ -26,7 +26,7 @@ mixin form-join(args)
 										li!= error.msg
 					
 				- var checkFormError = function(key) { return form.error && form.error.errors && form.error.errors[key] ? 'has-error' : null }
-			.form-groups
+			.form-groups.col-sm-8.col-md-6
 				.form-group(class=!args.modal ? checkFormError('firstname') : null)
 					label(for='firstname').sr-only First name
 					input(type='text', name='firstname', placeholder='First name', value=!args.modal ? form.firstname : null).form-control.form-control--first
@@ -45,7 +45,7 @@ mixin form-join(args)
 				.form-group(class=!args.modal ? checkFormError('password') : null)
 					label(for='password').sr-only Password
 					input(type='password', name='password', placeholder='Password', value=!args.modal ? form.password : null).form-control
-			button(type='submit').btn.btn-block.btn-primary.btn-submit Join
+				button(type='submit').btn.btn-block.btn-primary.btn-submit Join
 		
 		p.text-center.text-muted.mt-3
 			| Already have an account? 
