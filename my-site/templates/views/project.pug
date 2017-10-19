@@ -13,11 +13,15 @@ block content
 		p: a(href='/browseProjects').text-muted &larr; go back to browse for more projects
 		header
 			h1= project.title
-			p Institution: #{project.institution}
-			p Department: #{project.department}
-			p Summary: #{project.summary}
-			p Funding: #{project.funding}
-		table(style="width:100%")
+			if project.institution
+				p Institution: #{project.institution}
+			if project.department
+				p Department: #{project.department}
+			if project.summary
+				p Summary: #{project.summary}
+			if project.funding
+				p Funding: #{project.funding}
+		table
 			thead
 				tr
 					th Researchers:
