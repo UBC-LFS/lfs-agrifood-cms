@@ -9,3 +9,4 @@ source .env
 npm install
 # node keystone
 pm2 -f start keystone.js
+pm2 logs
