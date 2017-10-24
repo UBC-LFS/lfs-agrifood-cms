@@ -52,7 +52,7 @@ exports.initLocals = function (req, res, next) {
 	locals.basedir = keystone.get('basedir');
 
 	locals.page = {
-		title: 'BC Agrifood Database',
+		title: 'BC Agri-food Database',
 		path: req.url.split('?')[0], // strip the query - handy for redirecting back to the page
 	};
 
