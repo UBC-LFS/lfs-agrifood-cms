@@ -14,7 +14,6 @@ exports = module.exports = function (req, res) {
 	view.on('init', function (next) {
 		Project.paginate({
 			page: req.query.page || 1,
-			perPage: 10,
 		})
 		.sort('title')
 		.exec(function (err, results) {

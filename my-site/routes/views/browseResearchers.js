@@ -14,7 +14,6 @@ exports = module.exports = function (req, res) {
 	view.on('init', function (next) {
 		Researcher.paginate({
 			page: req.query.page || 1,
-			perPage: 10,
 		})
 		.sort('name')
 		.exec(function (err, results) {
