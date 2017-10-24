@@ -7,4 +7,4 @@ cd my-site
 source .env
 
 npm install
-pm2 start my-site/keystone
+pm2 start keystone.js
