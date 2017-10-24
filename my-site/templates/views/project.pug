@@ -17,7 +17,7 @@ block content
 				p Institution: #{project.institution}
 			if project.department
 				p Department: #{project.department}
-			if project.summary
+			if project.summary && project.summary != "No summary available"
 				p Summary: #{project.summary}
 			if project.funding
 				p Funding: #{project.funding}

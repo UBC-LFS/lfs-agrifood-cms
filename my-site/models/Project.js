@@ -16,7 +16,7 @@ Project.add({
 	institution: { type: String },
 	faculty: { type: String },
 	department: { type: String },
-	summary: { type: Types.Markdown },
+	summary: { type: String },
 	start: { type: Types.Date },
 	end: { type: Types.Date },
 	funding: { type: String },
