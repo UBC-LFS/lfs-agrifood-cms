@@ -21,12 +21,15 @@ block content
 				p Summary: #{project.summary}
 			if project.funding
 				p Funding: #{project.funding}
-		table
-			thead
-				tr
-					th Researchers:
-			tbody
-				each researcher in researchersList
+			if project.topic
+				p Topic: #{project.topic}
+		if researchersList.length > 0
+			table
+				thead
 					tr
-						td
-							a(href='/browseResearchers/researcher/' + researcher._id) #{researcher.name}
+						th Researchers:
+				tbody
+					each researcher in researchersList
+						tr
+							td
+								a(href='/browseResearchers/researcher/' + researcher._id) #{researcher.name}
