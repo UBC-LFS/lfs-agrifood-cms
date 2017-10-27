@@ -10,7 +10,7 @@ var keystone = require('keystone');
 // and documentation.
 
 keystone.init({
-	'name': 'BC AgriFood Database Project',
+	'name': 'BC Agri-Food Database Project',
 
 	'sass': 'public',
 	'static': 'public',
