@@ -52,7 +52,7 @@ html
 							span.icon-bar
 							span.icon-bar
 					.collapse.navbar-collapse
-						ul.nav.navbar-nav.navbar-left
+						ul.nav.navbar-nav
 							each link in navLinks
 								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
 							if user

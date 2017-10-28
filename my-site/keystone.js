@@ -10,14 +10,12 @@ var keystone = require('keystone');
 // and documentation.
 
 keystone.init({
-	'name': 'BC Agri-Food Database Project',
-
+	'name': 'BC AgriFood Database Project',
 	'sass': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'pug',
-
 	'auto update': true,
 	'session': true,
 	'auth': true,
