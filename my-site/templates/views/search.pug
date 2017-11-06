@@ -8,12 +8,12 @@ block content
 	body
 		.container
 			.row
-				.col-sm-6.col-sm-offset-3
+				.col-lg-4.col-lg-offset-4
 					form(method='post')
-						.input-group.stylish-input-group
-							input.form-control(name= 'searchText', type="text", placeholder="Search", value=formData.searchText)
-							span.input-group-addon
-								button(type="submit", name='action', value='search')
+						.input-group
+							input.form-control(placeholder="Search", type="text", value=formData.searchText)
+							span.input-group-btn
+								button.btn.btn-default(type="submit", value="search")
 									span.glyphicon.glyphicon-search
 	if projects.length > 0
 		.container
@@ -47,4 +47,4 @@ block content
 						li.disabled: a(href='?page=' + totalPages + '&query=' + query): span.glyphicon.glyphicon-chevron-right
 	else
 		.container
-			h3 No search results.
+			h4 No search results.
