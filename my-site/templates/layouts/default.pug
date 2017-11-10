@@ -13,6 +13,7 @@ html
 		title= title || 'BC Agri-Food Database Project'
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 
+		link(href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css", rel='stylesheet')
 		//- Customise the stylesheet for your site by editing /public/styles/site.sass
 		link(href="/styles/site.css", rel="stylesheet")
 		link(href='/js/__jquery.tablesorter/themes/blue/style.css', rel='stylesheet')
@@ -94,7 +95,17 @@ html
 		script(src='/js/bootstrap/dropdown.js')
 		script(src='/js/bootstrap/modal.js')
 		script(src='/js/__jquery.tablesorter/tablesorter.js')
-
+		script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+		script.
+			var tags = [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ];
+			$( "#autocomplete" ).autocomplete({
+				source: function( request, response ) {
+					var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+					response( $.grep( tags, function( item ){
+							return matcher.test( item );
+					}) );
+				}
+			});
 
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone
