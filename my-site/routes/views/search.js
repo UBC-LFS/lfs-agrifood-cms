@@ -22,7 +22,7 @@ exports = module.exports = function (req, res) {
 	locals.previous = false;
 	locals.next = false;
 	locals.query = '';
-	
+
 	view.on('get', function (next) {
 		if (req.query.page && req.query.query) {
 			// If the page and search query are specified, search Solr.
@@ -35,19 +35,19 @@ exports = module.exports = function (req, res) {
 			next();
 		}
 		console.log('reached get');
-	})
-	
+	});
+
 	view.on('post', { action: 'search' }, function (next) {
 		// Form the Solr query based on the user's search text. Multiple words are handled by searching for an occurrence
 		// of any of the words. The response is ordered by relevance. For example: if "food quality" is searched, then
 		// the titles containing both words would be at the top, while titles matching one word would come later.
-		var wordsToFind = locals.formData.searchText.split(" ");
+		var wordsToFind = locals.formData.searchText.split(' ');
 		locals.query = wordsToFind[0];
 		for (var i = 1; i < wordsToFind.length; i++) {
-			locals.query += "* OR *" + wordsToFind[i];
+			locals.query += '* OR *' + wordsToFind[i];
 		}
 		solrSearch(locals.query, 0, next);
-	})
+	});
 
 	// Render the view
 	view.render('search');
@@ -58,15 +58,15 @@ exports = module.exports = function (req, res) {
 	// next: Function to run after all the locals are set
 	function solrSearch(query, start, next) {
 		// TODO: Change this part when we have a public Solr running. For now, it's localhost and port 8983
-		var endpoint = '/solr/agrifood_projects_core/select?q=title:*' + encodeURIComponent(query) + '*' + '&rows=' +
-			maxItemsPerPage	+ '&start=' + start;
+		var endpoint = '/solr/agrifood_projects_core/select?q=title:*' + encodeURIComponent(query) + '*' + '&rows='
+		+ maxItemsPerPage	+ '&start=' + start;
 		var options = {
 			host: 'localhost',
 			port: 8983,
-			path: endpoint
+			path: endpoint,
 		};
 
-		callback = function(response) {
+		var callback = function (response) {
 			var str = '';
 			// A chunk of data has been received
 			response.on('data', function (chunk) {
@@ -76,29 +76,29 @@ exports = module.exports = function (req, res) {
 			// The whole response has been received
 			response.on('end', function () {
 				// Parse the response and set the locals to be used by the client
-				resp = JSON.parse(str).response;
+				var resp = JSON.parse(str).response;
 				locals.total = resp.numFound;
 				locals.projects = JSON.parse(str).response.docs;
 				locals.currentPage = req.query.page || 1;
 				locals.totalPages = Math.ceil(locals.total / maxItemsPerPage);
 				locals.first = (locals.currentPage - 1) * maxItemsPerPage + 1;
-				if (locals.currentPage != 1) {
+				if (locals.currentPage !== 1) {
 					locals.previous = locals.currentPage - 1;
 				} else {
 					locals.previous = false;
 				}
-				if (locals.currentPage == locals.totalPages) {
+				if (locals.currentPage === locals.totalPages) {
 					locals.next = false;
 				} else {
 					locals.next = locals.currentPage + 1;
 				}
-				if (locals.currentPage == locals.totalPages) {
+				if (locals.currentPage === locals.totalPages) {
 					locals.last = locals.total;
 				} else {
 					locals.last = locals.currentPage * maxItemsPerPage;
 				}
 				for (var i = 0; i < locals.totalPages; i++) {
-					if (i == maxItemsPerPage) {
+					if (i === maxItemsPerPage) {
 						locals.pages[i] = '...';
 					} else {
 						locals.pages[i] = i + 1;
@@ -106,7 +106,7 @@ exports = module.exports = function (req, res) {
 				}
 				next();
 			});
-		}
+		};
 
 		http.request(options, callback).end();
 	}
