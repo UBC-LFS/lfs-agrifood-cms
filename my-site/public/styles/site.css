@@ -1215,7 +1215,6 @@ p {
   margin: 0 0 10px; }
 
 .lead {
-  text-align: center;
   margin-bottom: 20px;
   font-size: 16px;
   font-weight: 300;
@@ -1504,13 +1503,7 @@ pre {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
-  padding-right: 15px; 
-}
-
-.container > h1, h2, h3, h4, h5, h6 {
-  text-align: center;
-}
-
+  padding-right: 15px; }
   .container:before, .container:after {
     content: " ";
     display: table; }
@@ -3552,9 +3545,7 @@ tbody.collapse.in {
   .input-group-btn:last-child > .btn,
   .input-group-btn:last-child > .btn-group {
     z-index: 2;
-    margin-left: -1px; 
-    height: 34px;
-  }
+    margin-left: -1px; }
 
 .nav {
   margin-bottom: 0;
@@ -5843,8 +5834,3 @@ button.close {
   display: block;
   max-width: 100%;
   height: auto; }
-
-.textbox {
-  padding: 0px 50px 0px 50px;
-}
-  

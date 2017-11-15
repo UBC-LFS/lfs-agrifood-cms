@@ -61,7 +61,6 @@ exports = module.exports = function (app) {
 	app.all('/browseResearchers/researcher/:researcher', routes.views.researcher);
 	app.all('/contact', routes.views.contact);
 	app.all('/submitProject', routes.views.submitProject);
-	app.all('/search', routes.views.search);
 
 	// Session
 	app.all('/join', routes.views.session.join);
