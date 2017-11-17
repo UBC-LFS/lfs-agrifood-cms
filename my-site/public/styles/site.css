@@ -3478,6 +3478,7 @@ tbody.collapse.in {
   vertical-align: middle; }
 
 .input-group-addon {
+  padding: 6px 12px;
   font-size: 14px;
   font-weight: normal;
   line-height: 1;
@@ -5833,9 +5834,3 @@ button.close {
   display: block;
   max-width: 100%;
   height: auto; }
-
-.btn-primary-outline {
-  background-color: transparent;
-  border: 0px solid transparent;
-  padding: 0px 12px;
-}
