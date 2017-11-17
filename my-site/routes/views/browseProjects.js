@@ -1,5 +1,4 @@
 var keystone = require('keystone');
-var Project = keystone.list('Project');
 const http = require('http');
 
 exports = module.exports = function (req, res) {

@@ -46,6 +46,14 @@ html
 
 			div(role="navigation").navbar
 				.container-fluid
+					.col-md-4.col-md-offset-8
+						form(method='get')
+							.input-group.stylish.input-group
+								input.form-control(type='hidden', name='page', value=1)
+								input.form-control(name='query', placeholder="Search", type="text")
+								span.input-group-addon
+									button#btn-next(type='submit')
+										span.glyphicon.glyphicon-search
 					.navbar-header
 						button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
 							span.sr-only Toggle navigation
@@ -63,6 +71,7 @@ html
 								li: a(href='/signout') Sign Out
 							else
 								li: a(href='/signin') Sign In
+
 
 		//- BODY
 		#body
@@ -96,6 +105,14 @@ html
 		script(src='/js/bootstrap/modal.js')
 		script(src='/js/__jquery.tablesorter/tablesorter.js')
 		script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+
+		script. 
+			$('#btn-next').click(function() {
+				var input = document.getElementById("search").value;
+				console.log(input);
+				window.location.href = '/browseProjects?page=1&amp;query=' + input;
+				return false;
+			});
 		
 
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
