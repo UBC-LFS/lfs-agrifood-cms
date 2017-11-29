@@ -27,3 +27,14 @@ block content
 						tr
 							td
 								a(href='/browseProjects/project/' + project._id) #{project.title}
+		br
+		if works
+			table
+				thead
+					tr
+						th Other Works:
+				tbody
+					each work in works
+						tr
+							td
+								p #{work.title.title.value}
