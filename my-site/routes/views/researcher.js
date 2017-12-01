@@ -27,14 +27,14 @@ exports = module.exports = function (req, res) {
 				});
 		});
 	});
-	
-	function initResearcherSummary(orcID, next) {
+
+	function initResearcherSummary (orcID, next) {
 		// Get the works of current researcher by using OrcID public API
 		var endpoint = '/v2.1/' + orcID + '/works';
 		var options = {
 			host: 'pub.orcid.org',
 			path: endpoint,
-			headers: {'Accept' : 'application/json'}
+			headers: { 'Accept': 'application/json' },
 		};
 
 		var callback = function (response) {
@@ -47,10 +47,18 @@ exports = module.exports = function (req, res) {
 			// The whole response has been received
 			response.on('end', function () {
 				// Parse the response and set the locals to be used by the client
-				var resp = JSON.parse(str);
+				let resp = JSON.parse(str);
 				locals.works = [];
-				for (var i = 0; i < resp.group.length; i++) {
+				locals.otherWorks = {};
+				for (let i = 0; i < resp.group.length; i++) {
 					locals.works.push(resp.group[i]['work-summary'][0]);
+				}
+				for (let work of locals.works) {
+					let title = work.title.title.value;
+					locals.otherWorks[title] = work['external-ids']['external-id'][0];
+					if (locals.otherWorks[title]['external-id-type'] === 'doi') {
+						locals.otherWorks[title].otherWorkUrl = 'https://doi.org/' + locals.otherWorks[title]['external-id-value'];
+					}
 				}
 				next();
 			});
