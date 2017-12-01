@@ -13,10 +13,23 @@ block content
 		p: a(href='/browseResearchers').text-muted &larr; go back to browse for more researchers
 		header
 			h1= researcher.name
-			if researcher.institution
-				p Institution: #{researcher.institution}
-			if researcher.department
-				p Department: #{researcher.department}
+			table
+				if researcher.institution
+					thead
+						tr
+							th Institution:
+					tbody
+						tr
+							td
+								p #{researcher.institution}
+				if researcher.department
+					thead
+						tr
+							th Department:
+					tbody
+						tr
+							td
+								p #{researcher.department}
 		if projects
 			table
 				thead

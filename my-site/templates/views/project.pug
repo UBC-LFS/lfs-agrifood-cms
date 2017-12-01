@@ -13,16 +13,47 @@ block content
 		p: a(href='/browseProjects').text-muted &larr; go back to browse for more projects
 		header
 			h1= project.title
-			if project.institution
-				p Institution: #{project.institution}
-			if project.department
-				p Department: #{project.department}
-			if project.summary && project.summary != "No summary available"
-				p Summary: #{project.summary}
-			if project.funding
-				p Funding: #{project.funding}
-			if project.topic
-				p Topic: #{project.topic}
+			table
+				if project.institution
+					thead
+						tr
+							th Institution:
+					tbody
+						tr
+							td
+								p #{project.institution}
+				if project.department
+					thead
+						tr
+							th Department:
+					tbody
+						tr
+							td
+								p #{project.department}
+				if project.summary && project.summary !== "No summary available"
+					thead
+						tr
+							th Summary:
+					tbody
+						tr
+							td
+								p #{project.summary}
+				if project.funding
+					thead
+						tr
+							th Funding:
+					tbody
+						tr
+							td
+								p #{project.funding}
+				if project.topic
+					thead
+						tr
+							th Topic:
+					tbody
+						tr
+							td
+								p #{project.topic}
 		if researchersList.length > 0
 			table
 				thead
