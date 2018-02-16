@@ -23,7 +23,7 @@ exports = module.exports = function (req, res) {
 	locals.query = '';
 
 	view.on('get', function (next) {
-		if (req.query.page && req.query.query) {
+		if (req.query.page) {
 			// If the page and search query are specified, search Solr.
 			var start = maxItemsPerPage * (req.query.page - 1);
 			locals.query = req.query.query;
