@@ -32,3 +32,6 @@ node_modules
 
 # Ignore .idea files
 .idea/*
+
+oplog.timestamp
+
