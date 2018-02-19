@@ -9,24 +9,5 @@ block content
 			.container
 				.textbox
 					p The BC Agri-Food Database is a portal of completed and ongoing agri-food related research in British Columbia. The goal of this initiative is to increase communication and collaboration among government, university, and college researchers as well as industry and government stakeholders. The database will better support the formation of industry-driven research partnerships and training initiatives within the agri-food sector while minimizing duplication of effort. This project is funded by the BC Ministry of Agriculture.
-			h3 Browse By Researcher
-			.row
-				.col-md-6.col-md-offset-3
-					.input-group
-						input#autocomplete.ui-autocomplete-input.form-control(type='text', placeholder='Search for Researcher Name')
-						span.input-group-btn
-							button.btn.btn-default(type="submit", value="search")
-								span.glyphicon.glyphicon-search
-	script. 
-		var tags = '#{researcher}'.split(',');
-		document.addEventListener('DOMContentLoaded', function () {
-			$( "#autocomplete" ).autocomplete({
-				source: function( request, response ) {
-				var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
-				response( $.grep( tags, function( item ){
-					return matcher.test( item );
-				}));
-				}
-			});
-		}, false)
+
 

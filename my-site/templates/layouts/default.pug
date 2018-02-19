@@ -44,13 +44,13 @@ html
 			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
 			//- ... or completely change this header to suit your design.
 
-			div(role="navigation").navbar
+			div(role="navigation").navbar.navbar-default
 				.container-fluid
 					.col-md-4.col-md-offset-8
 						form(method='get')
 							.input-group.stylish.input-group
 								input.form-control(type='hidden', name='page', value=1)
-								input#search.form-control(name='query', placeholder="Search", type="text")
+								input#search.ui-autocomplete-input.form-control(name='query', type='text', placeholder='Search')
 								span.input-group-addon
 									button#btn-next.btn-primary-outline(type='submit')
 										span.glyphicon.glyphicon-search
@@ -113,6 +113,18 @@ html
 				return false;
 			});
 		
+			var tags = '#{researcher}'.split(',');
+			console.log(tags)
+			document.addEventListener('DOMContentLoaded', function () {
+				$( "#search" ).autocomplete({
+					source: function( request, response ) {
+					var matcher = new RegExp( ".*" + $.ui.autocomplete.escapeRegex( request.term ) + ".*", "i" );
+					response( $.grep( tags, function( item ){
+						return matcher.test( item );
+					}));
+					}
+				});
+			}, false);
 
 		//- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 		//- which generate links to edit content for users who can access Keystone
