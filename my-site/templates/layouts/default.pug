@@ -64,14 +64,6 @@ html
 						ul.nav.navbar-nav
 							each link in navLinks
 								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-							if user
-								li: a(href='/submitProject') Submit Project
-								if user.canAccessKeystone
-									li: a(href='/keystone') Open Admin Portal
-								li: a(href='/signout') Sign Out
-							else
-								li: a(href='/signin') Sign In
-
 
 		//- BODY
 		#body
