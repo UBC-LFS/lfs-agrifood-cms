@@ -30,6 +30,10 @@ exports = module.exports = function (req, res) {
 
 	function initResearcherSummary (orcID, next) {
 		// Get the works of current researcher by using OrcID public API
+		if (orcID === null) {
+			next();
+			return;
+		}
 		var endpoint = '/v2.1/' + orcID + '/works';
 		var options = {
 			host: 'pub.orcid.org',
