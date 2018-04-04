@@ -51,9 +51,11 @@ exports = module.exports = function (req, res) {
 		for (var i = 1; i < wordsToFind.length; i++) {
 			locals.query += '* OR *' + wordsToFind[i];
 		}
-		// TODO: Change this part when we have a public Solr running. For now, it's localhost and port 8983
-		var endpoint = '/solr/agrifood_projects_core/select?q=title:*' + encodeURIComponent(locals.query) + '*' + '&rows='
-		+ maxItemsPerPage	+ '&start=' + start;
+		// This forms a query like the following example: 
+		// http://localhost:8983/solr/agrifood_projects_core/select?q=title:*water* OR summary:*water* OR topic:*water*^2
+		// This example searches for the keyword "water" with topic being given a higher priority than the other 2 fields.
+		var endpoint = encodeURI('/solr/agrifood_projects_core/select?q=title:*' + locals.query + '* OR summary:*' + 
+			locals.query + '* OR topic:*' + locals.query + '*^2' +'&rows=' + maxItemsPerPage	+ '&start=' + start);
 		var options = {
 			host: 'localhost',
 			port: 8983,
